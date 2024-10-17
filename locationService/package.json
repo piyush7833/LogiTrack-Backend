@@ -1,0 +1,22 @@
+{
+  "name": "locationservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "http": "^0.0.1-security",
+    "ioredis": "^5.4.1",
+    "kafka-node": "^5.0.0",
+    "mongoose": "^8.7.1",
+    "socket.io": "^4.8.0"
+  }
+}
