@@ -7,11 +7,7 @@ const consumer = new kafka.ConsumerGroup(
   {
     kafkaHost: 'localhost:9092',
     groupId: 'driver-location-group',
-<<<<<<< HEAD
     autoCommit: true,
-=======
-    autoCommit: true
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
   },
   ['driverLocation']
 );
