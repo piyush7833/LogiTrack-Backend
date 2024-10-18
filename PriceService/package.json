@@ -1,13 +1,9 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-<<<<<<< HEAD
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^8.7.1",
-=======
-    "express": "^4.21.1",
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     "morgan": "^1.10.0"
   },
   "name": "priceservice",

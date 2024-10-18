@@ -24,7 +24,6 @@ export const isAdmin = (req, res, next) => {
   next();
 }
 
-<<<<<<< HEAD
 export const isNotAdmin = (req, res, next) => {
   if (req.user.role === "admin") {
     console.log("object")
@@ -33,6 +32,4 @@ export const isNotAdmin = (req, res, next) => {
   next();
 }
 
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
 

@@ -2,7 +2,6 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import Vehicle from "../models/Vehicle.js";
 import { createVehicle, deleteVehicle, getAllVehicles, getVehicleById, updateVehicle } from "../controllers/vehicle.js";
-<<<<<<< HEAD
 import { authenticateToken, isAdmin } from "../middleware/middleware.js";
 const router = express.Router();
 
@@ -12,17 +11,6 @@ router.get("/get",authenticateToken,isAdmin, getAllVehicles)
 router.get("/get/:id",authenticateToken,isAdmin, getVehicleById)
 router.delete("/delete/:id",authenticateToken,isAdmin, deleteVehicle)
 router.put("/update/:id",authenticateToken,isAdmin, updateVehicle)
-=======
-import { authenticateToken } from "../middleware/middleware.js";
-const router = express.Router();
-
-router.post("/create",  authenticateToken, createVehicle )
-
-router.get("/get",authenticateToken,getAllVehicles)
-router.get("/get/:id",authenticateToken,getVehicleById)
-router.delete("/delete/:id",authenticateToken,deleteVehicle)
-router.put("/update/:id",authenticateToken,updateVehicle)
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
 
 router.get(
   "/nearby-vehicles",

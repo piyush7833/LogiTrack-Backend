@@ -1,21 +1,19 @@
 import { instance } from "../index.js";
 import Booking from "../models/Booking.js";
 import Payment from "../models/Payment.js";
-<<<<<<< HEAD
 import crypto from 'crypto';
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
 
 export const checkout=async(req,res,next)=>{
     try {
       const {amount}=req.body;
       const options = {
-        amount: amount*100,  // amount in the smallest currency unit //500rs
+        amount: amount.toFixed(0)*100,  // amount in the smallest currency unit //500rs
         currency: "INR",
         receipt: "order_rcptid_11"
       };
+      console.log(options)
       const order= await instance.orders.create(options); 
-      // console.log(order,"order")
+      console.log(order,"order")
       res.status(200).send({
         success: true,
         order,
@@ -48,10 +46,7 @@ export const checkout=async(req,res,next)=>{
           razorpay_payment_id,
           razorpay_signature,
         })
-<<<<<<< HEAD
         console.log(bookingId)
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
         const booking= await Booking.findByIdAndUpdate(bookingId,{paymentId:payment._id},{new:true});
         return res.status(200).json({message:"Payment is successful"});
       }

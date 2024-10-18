@@ -89,11 +89,7 @@ export const getAllDrivers = async (req, res) => {
           }
         : null,
     }));
-<<<<<<< HEAD
     await setAsync(adminCacheKey, JSON.stringify(driverDetails), 'EX', 6000);
-=======
-    await setAsync(adminCacheKey, JSON.stringify(drivers), 'EX', 6000);
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     res
       .status(200)
       .json({
@@ -122,22 +118,11 @@ export const getParticularDriver = async (req, res) => {
     const driver = await Driver.findById(req.params.id)
       .populate("userId", "name username email phone role")
       .populate("vehicleId", "model licensePlate");
-<<<<<<< HEAD
 
     if (!driver) {
       return res.status(404).json({ message: "Driver not found." });
     }
 
-=======
-    if (!driver) {
-      return res.status(404).json({ message: "Driver not found." });
-    }
-    if (driver.adminId.toString() !== req.user.id.toString()) {
-      return res
-        .status(403)
-        .json({ message: "You are not authorized to view this driver." });
-    }
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     const driverDetails = {
       _id: driver._id,
       name: driver.userId.name,
@@ -200,10 +185,6 @@ try {
         .status(403)
         .json({ message: "You are not authorized to update this driver." });
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     const updatedDriver = await Driver.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -253,10 +234,6 @@ export const deleteDriver = async (req, res) => {
     const cacheKey = `driver:${req.params.id}`; 
     const driver = await Driver.findById(req.params.id);
     const adminCacheKey = `admin-drivers:${driver.adminId}`;
-<<<<<<< HEAD
-=======
-    await Vehicle.findOneAndUpdate({ driverId: req.params.id }, { driverId: null });
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     if (!driver) {
       return res.status(404).json({ message: "Driver not found." });
     }
@@ -265,11 +242,8 @@ export const deleteDriver = async (req, res) => {
         .status(403)
         .json({ message: "You are not authorized to delete this driver." });
     }
-<<<<<<< HEAD
     
     await Vehicle.findOneAndUpdate({ driverId: req.params.id }, { driverId: null });
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     await User.deleteOne({ _id: driver.userId });
     await Driver.deleteOne({ _id: req.params.id });
     await delAsync(cacheKey);

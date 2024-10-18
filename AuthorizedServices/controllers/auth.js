@@ -28,10 +28,6 @@ export const signup = async (req, res) => {
 
     res.status(201).json({
       message: "User created successfully",
-<<<<<<< HEAD
-=======
-      token,
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     });
   } catch (error) {
     console.log(error);
@@ -53,7 +49,6 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-<<<<<<< HEAD
     let driverId = null;
     if (user.role === "driver") {
       const driver = await Driver.findOne({ userId: user._id });
@@ -61,23 +56,11 @@ export const login = async (req, res) => {
     }
     const token = jwt.sign(
       { id: user._id, email: user.email, role: user.role, driverId: driverId },
-=======
-    const token = jwt.sign(
-      { id: user._id, email: user.email, role: user.role },
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
       process.env.JWT_SECRET,
       {
         expiresIn: "24h",
       }
     );
-<<<<<<< HEAD
-=======
-    let driverId = null;
-    if (user.role === "driver") {
-      const driver = await Driver.findOne({ userId: user._id });
-      driverId = driver._id;
-    }
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     res.status(200).json({
       message: "Login successful",
       token,
@@ -131,10 +114,6 @@ export const getUserById = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     const response = {
       id: user._id,
       phone: user.phone,
@@ -152,13 +131,8 @@ export const getUserById = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-<<<<<<< HEAD
   const { id } = req.user;
   const { name, email, password, role,phone } = req.body;
-=======
-  const { id } = req.params;
-  const { name, email, password, role, licenseNumber, preferredVehicleType } = req.body;
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
 
   try {
     const user = await User.findById(id);
@@ -176,17 +150,6 @@ export const updateUser = async (req, res) => {
       user.password = await bcrypt.hash(password, salt);
     }
 
-<<<<<<< HEAD
-=======
-    if (user.role === "driver") {
-      const driver = await Driver.findOne({ userId: id });
-      if (driver) {
-        driver.licenseNumber = licenseNumber || driver.licenseNumber;
-        await driver.save();
-      }
-    }
-
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     await user.save();
 
     const response = {
@@ -205,10 +168,7 @@ export const updateUser = async (req, res) => {
 
     res.status(200).json({ data: { user: response }, message: "User updated successfully" });
   } catch (error) {
-<<<<<<< HEAD
     console.log(error)
-=======
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };

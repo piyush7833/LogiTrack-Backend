@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: location-service
+  template:
+    metadata:
+      labels:
+        app: location-service
+    spec:
+      containers:
+      - name: location-service
+        image: piyush7833/atlan-location-service
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO
+          value: "mongodb+srv://your_mongo_uri"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: location-service
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: location-service

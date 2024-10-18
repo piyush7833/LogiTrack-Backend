@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authorized-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: authorized-service
+  template:
+    metadata:
+      labels:
+        app: authorized-service
+    spec:
+      containers:
+      - name: authorized-service
+        image: piyush7833/atlan-authorized-service
+        ports:
+        - containerPort: 8800
+        env:
+        - name: MONGO
+          value: "mongodb+srv://your_mongo_uri"
+        - name: JWT_SECRET
+          value: "your_jwt_secret"
+        - name: ORS_API_KEY
+          value: "your_ors_api_key"
+        - name: WEATHER_API_KEY
+          value: "your_weather_api_key"
+        - name: RAZORPAY_KEY_SECRET
+          value: "your_razorpay_key_secret"
+        - name: RAZORPAY_KEY_ID
+          value: "your_razorpay_key_id"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authorized-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8800
+    targetPort: 8800
+  selector:
+    app: authorized-service

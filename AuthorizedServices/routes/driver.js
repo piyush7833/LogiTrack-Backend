@@ -9,6 +9,6 @@ router.get("/get",authenticateToken,isAdmin, getAllDrivers);
 router.get("/get/:id",authenticateToken, getParticularDriver);
 router.put("/update/:id",authenticateToken,isAdmin, updateDriver);
 router.delete("/delete/:id",authenticateToken,isAdmin, deleteDriver);
-router.put("/update-via-location/:id", updateDriverLocation);
+// router.put("/update-via-location/:id", updateDriverLocation);
 
 export default router;

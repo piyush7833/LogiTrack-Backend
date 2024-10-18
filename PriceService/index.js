@@ -2,7 +2,6 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { pricePerKm, surgcharge } from "./config.js";
-<<<<<<< HEAD
 import mongoose from "mongoose";
 import Booking from "./models/Booking.js";
 import dotenv from "dotenv";
@@ -10,19 +9,12 @@ import Driver from "./models/Driver.js";
 // Rest object
 const app = express();
 dotenv.config();
-=======
-
-// Rest object
-const app = express();
-
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
  
 // Routes
-<<<<<<< HEAD
 const connect = () => {
   mongoose.set("strictQuery", false);
   mongoose
@@ -41,17 +33,10 @@ app.get("/api/price/get", async (req, res) => {
   try {
     let { traffic, distance, isRaining,lat,lng } = req.query;
     console.log(traffic, distance, isRaining,lat,lng);
-=======
-app.get("/api/price/get", (req, res) => {
-  try {
-    let { traffic, distance, isRaining } = req.query;
-
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     let miniPrice = pricePerKm["mini"] * (distance / 1000);
     let truckPrice = pricePerKm["truck"] * (distance / 1000);
     let bigTruckPrice = pricePerKm["big-truck"] * (distance / 1000);
 
-<<<<<<< HEAD
     // const range = 20 / 6371; // 10 km in radians, Earth's radius is approximately 6371 km
     // const availableDriversCount = await Driver.countDocuments({
     //   isAvailable: true,
@@ -86,15 +71,6 @@ app.get("/api/price/get", (req, res) => {
     //   ratio = Math.round((pendingBookingsCount / availableDriversCount) * 2) / 2;
     // }
     // totalSurcharge+=(ratio/10);
-=======
-    if (!distance || distance==0) {
-      return res
-        .status(400)
-        .json({ error: "Traffic and distance are required" });
-    }
-    let totalSurcharge = 0;
-
->>>>>>> 78f242ff552819ca17cb1507440d1575b9e67c69
     if (distance / 1000 > 100) {
       totalSurcharge += surgcharge["dist>100"];
     }
